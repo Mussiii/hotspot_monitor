@@ -1,0 +1,103 @@
+.all-info{
+    /* background-color: rgb(140, 246, 211); */
+    width: 30%;
+    overflow: hidden;
+    /* margin: auto; */
+    /* position: absolute; */
+    box-shadow:  2px 2px 8px rgba(0, 0, 0, .1);
+    padding-bottom: 1%;
+}
+
+.nega-info{
+    /* background-color: rgb(132, 229, 236); */
+    overflow: hidden;
+    /* margin:auto; */
+    /* position: absolute; */
+    width:30%;
+    box-shadow:  2px 2px 8px rgba(0, 0, 0, .1);
+    padding-bottom: 1%;
+}
+
+.posi-info{
+    /* background-color: rgb(173, 206, 243); */
+    /* margin:auto; */
+    /* position: absolute; */
+    width:30%;
+    overflow: hidden;
+    box-shadow:  2px 2px 8px rgba(0, 0, 0, .1);
+    padding-bottom: 1%;
+}
+
+/* 以上三个框正式时用一个样式（白底），排列父div为flex_wrap:wrap，内接flex形状不变框（见下） */
+
+
+.data-view{
+    background-color: white;
+    display: flex;
+    min-height: 4rem;
+    margin-left: 1rem;
+    margin-right:1rem;
+    flex-direction: block;
+}
+
+
+#emo_data_all{
+    margin-top: 5%;
+    font-size: 42px;
+    font-weight: 600;
+    margin-left: 6%;
+    padding-left: 4%;
+    padding-bottom: 1.4%;
+    border-bottom: 6px solid #bd87d6;
+
+}
+
+#emo_data_neg{
+    margin-top: 5%;
+    font-size: 42px;
+    font-weight: 600;
+    margin-left: 6%;
+    padding-left: 4%;
+    padding-bottom: 1.4%;
+    margin-right: 50%;
+    border-bottom: 6px solid #86bcf5;
+
+}
+
+#emo_data_pos{
+    margin-top: 5%;
+    font-size: 42px;
+    font-weight: 600;
+    margin-left: 6%;
+    padding-left: 4%;
+    padding-bottom: 1.4%;
+    margin-right: 20%;
+    border-bottom: 6px solid #81dede;
+
+}
+
+
+
+#emo-tag-all{
+    display: block;
+    border-right: 10px solid #9254ad;
+    padding-left: 3%;;
+    background: linear-gradient(to left, #ffffff, #e4e3e3);
+    color: #6d487d;
+}
+
+#emo-tag-pos{
+    display: block;
+    border-right: 10px solid #45b2c6;
+    padding-left: 3%;
+    background: linear-gradient(to left, #ffffff, #e4e3e3);
+    color: #527070;
+}
+
+#emo-tag-neg{
+    display: block;
+    border-right: 10px solid #4664d1;
+    padding-left: 3%;
+    background: linear-gradient(to left, #ffffff, #e4e3e3);
+    color: #2d3f84;
+}
