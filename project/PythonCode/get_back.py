@@ -60,6 +60,43 @@ class BIRNN_Net(nn.Module):
         x = self.fc2(x)
         return x
 
+
+#爬取的热度数据处理
+def normalize_hot(hot_list):
+    normalized = []
+    for item in hot_list:
+        try:
+            # 清理空格和非字符串直接跳过
+            if not isinstance(item, str):
+                item = str(item)
+
+            item = item.strip()
+
+            # 如果是形如 "盛典 289531"，保留数字部分，忽略前面文字
+            parts = item.split()
+            if len(parts) == 2 and parts[1].isdigit():
+                num = int(parts[1])
+                normalized.append(f"{num / 10000:.1f}万")
+
+            # 如果是纯数字
+            elif item.isdigit():
+                num = int(item)
+                normalized.append(f"{num / 10000:.1f}万")
+
+            # 如果是已是“xx.x万”格式
+            elif '万' in item and any(char.isdigit() for char in item):
+                normalized.append(item)
+
+            # 其他情况（如空字符串、异常格式等）
+            else:
+                normalized.append('0.0万')  # 可按需改为保留原始 item
+
+        except:
+            normalized.append('0.0万')  # 异常保护
+
+    return normalized
+
+
 # 这个方法用来处理hot的数据清洗
 def process_data(data):
     processed_data = []
@@ -173,7 +210,21 @@ def get_data_back():
     if response_weibo.ok:
         extract_data(response_weibo.text, "weibo")
 
+    # 打印前20条检查
+    # print("===== 前20个 title =====")
+    # print(title[:20])
+    # print("===== 前20个 url =====")
+    # print(url[:20])
+    # print("===== 前20个 source =====")
+    # print(source[:20])
+    # print("===== 前20个 hot =====")
+    # print(hot[:20])
+    # print("===== 后20个 title =====")
+    # print(title[-20:])
+    # print(hot[-20:])
+
     # ===  清洗 hot 数据 ===
+    hot = normalize_hot(hot)
     hot = process_data(hot)
 
     # ===  创建 DataFrame ===
@@ -494,6 +545,8 @@ def main(str):
     print("ip刷新已完成")
 
     return ip_tj
+
+
 
 
 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据监测-网络情报分析系统</title>
+    <link rel="stylesheet" href="../static/new.css">
+ 
+
+    <script type="text/javascript" src="./js/jquery.min.js" ></script>
+    <script type="text/javascript" src="./js/jquery.js" ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+    <script src="https://cdn.staticfile.net/Chart.js/3.9.1/chart.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.2.2/echarts.min.js"></script>
+    <script src="./js/pie-flush.js"></script>
+    <script src="./js/hot_flush.js"></script>
+    <!-- <script src="./js/flush_time.js"></script> -->
+    <script src="./js/word_flush.js"></script>
+  
+    <script>
+        $(document).ready(function(){
+            $("#search-tab li").on("click", function () {
+                $(this).siblings().removeClass("create-tab-act");
+                $(this).addClass("create-tab-act");
+            });
+        });
+
+
+
+    </script>
+    
+    
+</head>
+<body>
+    <header>  
+        <ul type="none" style="padding-left: 0%;" >
+            <li><a href="./demo.html">检测分析</a></li>
+            <li><a href="./数据监测页面2.html">数据监测</a></li>
+            <li>热点监察</li>
+            <li><a href="./search.html">关键词搜索</a></li>
+        </ul>
+    </header>  
+    <main style="padding-top: 114px;">
+        <div class="box">
+            <div id="box1" style="width:400px;">
+                <div id="inbox1">
+                    <div class="h1">
+                        <h3 class="titles" style="margin-bottom: 0;padding-top: 2%;">热搜词监察</h3>
+                    </div>
+                    <div id="txt">
+                        <div class="word_flush" id="word_flush1">测试1</div>
+                        <div class="word_flush" id="word_flush2">测试2</div>
+                        <div class="word_flush" id="word_flush3">歪比巴卜哇我</div>
+                        <div class="word_flush" id="word_flush4">测试啦啦啦</div>
+                        <div class="word_flush" id="word_flush5">测试啦啦啦</div>
+                    </div>
+                </div>
+                <div id="inbox2">
+                    <div class="h1">
+                        <h3 class="titles" style="padding-top: 2%;">实时情绪占比</h3>
+                    </div>
+                    <div>
+                      <canvas id="pieChart" width="300"></canvas>  
+                    </div>
+                </div>
+                
+            </div>
+
+            <div id="box2">
+                <div class="h2">
+                    <h3 class="titles" style="margin-bottom: 2%;margin-top: 2%;">地区热搜讨论统计</h3>
+                </div>
+                <div id="map-chart">
+                    <div id="mapFlush" style="width: 898px; height: 490px;z-index: 5;border: 2px solid rgb(163, 174, 198);margin-left: 9px;position: relative;background-color: rgb(240, 245, 249);"></div>
+                    <div>
+                        <h3 class="titles" style="font-size: 24px;padding-left: 4%;margin-top: 2%;margin-bottom: 10px;">实时热搜</h3>
+                        <div class="hot-text-container" style="padding-left: 5%;background-color: white;">
+                            <div class="hot-text-slider" id="hot_flush">
+                                <div class="hot-text-slide">
+                                    <span class="rank1">1</span>
+                                    <a class="redirect_link">热搜 1</a>
+                                    <span class="eventTag" >情感</span>
+                                </div>
+                                <div class="hot-text-slide">
+                                    <span class="rank2">2</span>
+                                    <a class="redirect_link">热搜 2</a>
+                                    <span class="eventTag" >情感</span>
+                                </div>
+                                <div class="hot-text-slide">
+                                    <span class="rank3">3</span>
+                                    <a class="redirect_link">热搜 3</a>
+                                    <span class="eventTag" >情感</span>
+                                </div>
+                                <div class="hot-text-slide">
+                                    <span class="rank4">4</span>
+                                    <a class="redirect_link">热搜 4</a>
+                                    <span class="eventTag" >情感</span>
+                                </div>
+                                <div class="hot-text-slide">
+                                    <span class="rank5">5</span>
+                                    <a class="redirect_link">热搜 5</a>
+                                    <span class="eventTag" >情感</span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <script>
+                            $(document).ready(function() {
+                                let currentIndex = 0;
+                                const slides = $('.hot-text-slide');
+                                const totalSlides = slides.length;
+                    
+                                function showNextSlide() {
+                                    currentIndex = (currentIndex + 1) % totalSlides;
+                                    const translateY = -currentIndex * 50; // 每段文字的高度
+                                    $('.hot-text-slider').css('transform', `translateY(${translateY}px)`);
+                                }
+                    
+                                setInterval(showNextSlide, 4000); // 每4秒滚动一次
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+            <div id="box3">
+                <div class="h3">
+                    <h3 class="titles">实时热搜榜</h3>
+                </div>
+                <div>
+                    <ul class="create-tab-report pro-bb" id="search-tab">
+                        <li class="create-tab-act" data-type="0"><h6>微博</h6></li>
+                        <li class="" data-type="1"><h6>百度</h6></li>
+                        <li class="" data-type="3"><h6>微信</h6></li>
+                    </ul>
+                </div>
+                <div class="table-responsive">
+                        <div id="hot_flush" data-type="0"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="./js/map.js"></script>
+</body>
+</html>

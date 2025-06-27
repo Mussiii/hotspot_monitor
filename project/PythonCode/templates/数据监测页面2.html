@@ -1,0 +1,77 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>数据监测-网络情报分析系统</title>  
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="../static/style1.css">   
+    <script type="text/javascript" src="./js/jquery.min.js" ></script> 
+    <script type="text/javascript" src="./js/jquery.js" ></script>
+    <script src="./js/link.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#search-tab li").on("click", function () {
+                $(this).siblings().removeClass("create-tab-act");
+                $(this).addClass("create-tab-act");
+            });
+        });
+
+        
+    </script>
+
+</head>
+<body>
+    <header>   
+        <ul type="none" style="padding-left: 0%;">
+            <li><a href="./demo.html">检测分析</a></li>
+            <li style=" text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);color: rgb(136, 162, 188);">数据监测</li>
+            <li><a href="./new.html">热点监察</a></li>
+            <li><a href="./search.html">关键词搜索</a></li>
+        </ul>
+        <input type="button" class="btn" title="刷新" alt="刷新" id="refresh" style="left: 1480px;">
+        <script>
+            // 获取 id 为 refresh 的按钮元素
+            const refreshButton = document.getElementById('refresh');
+    
+            // 监听按钮的点击事件
+            refreshButton.addEventListener('click', function() {
+                // 刷新页面
+                location.reload();
+            });
+        </script>
+    </header>  
+    <main  style="padding-top: 110px;">
+    <div class="shell" id="finding"></div>
+    <div style="width: 20px;height: 20px;margin-left: 80px;background-color: rgb(194, 81, 117);position: fixed;z-index: 60;"></div>
+    <div style="width: 20px;height: 20px;background-color: rgb(7, 37, 120);position: fixed;z-index: 60;"></div>
+    <div id="main-wrapper" style="padding-left: 100px;">
+        <div class="row">
+            <div class="box1">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <h4 class="card-title" style="margin-top: 1rem;margin-left: .7rem;">热点事件</h4>
+                        <div class="card-body border-top">
+                            <ul class="create-tab-report pro-bb" id="search-tab">
+                                <li class="create-tab-act" data-type="0">全部</li>
+                                <li class="" data-type="1">正面</li>
+                                <li class="" data-type="3">负面</li>
+                            </ul>
+                            <div class="table-responsive">
+                                <table id="hotEventRankingTable"
+                                    class="table v-middle hot-rank" style="position: relative;height: 2%;">
+                                    <tbody >
+                                        <div id="hotEventRanking" data-type="0">
+                                            
+                                        </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+</body>  
