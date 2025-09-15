@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热搜词</title>
+    <!-- <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var percentageLines = document.querySelectorAll(".percentage-line");
+
+            percentageLines.forEach(function(line) {
+                var percentage = line.getAttribute("data-percentage");
+                var widthPercentage = percentage + "%";
+                var widthRemaining = (100 - percentage) + "%";
+                line.style.setProperty("--percentage-width", widthPercentage);
+                line.style.setProperty("--remaining-width", widthRemaining);
+            });
+        });
+    </script> -->
+</head>
+<body>
+    <div id="hot_words">
+        {% for row in output %}
+            <div class="hotwords">   
+                {% if loop.index == 1 %}
+                    <span class="hotword hot1">{{ row[0] }}</span>            
+                {% elif loop.index == 2 %}
+                    <span class="hotword hot2">{{ row[0] }}</span>            
+                {% elif loop.index == 3 %}
+                    <span class="hotword hot3">{{ row[0] }}</span>            
+                {% elif loop.index == 4 %}
+                    <span class="hotword hot4">{{ row[0] }}</span>            
+                {% elif loop.index == 5 %}
+                    <span class="hotword hot5">{{ row[0] }}</span>            
+                {% endif %}
+                <span class="hot_num">
+                    <span style="font-size: 16px;color: rgb(183, 192, 205);padding-right: 10%;">出现次数</span>
+                    <span>{{ row[1] }}</span>
+                </span>
+                <!-- <div class="hot_index">{{ row[2] }}</div> -->             
+                 <!-- {% set width_percentage = percentage %}
+                <div class="percentage-bar">
+                    <div class="percentage-fill" style="width: {{ width_percentage }};"></div>
+                </div> -->
+            </div> 
+            <!-- <hr class="percentage-line" data-percentage="{{ row[3] }}"> -->
+           
+        {% endfor %}
+    </div>
+</body>
+</html>

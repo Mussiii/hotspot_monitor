@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Pie Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div>
+        <canvas id="myPieChart"></canvas>
+    </div>
+    <div>
+        {% for rows in emo_per %}
+
+        {% endfor %}
+    </div>
+    <script>
+        const data = {     
+            labels: ['正面', '中性', '负面'],
+            datasets: [{
+                data: JSON.parse('{{ emo_per | safe }}'),
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            }]
+        };
+        // 创建饼图
+        const ctx = document.getElementById('myPieChart');
+        new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return data.labels[tooltipItem.index] + ': ' + data.datasets[0].data[tooltipItem.index] + '%';
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

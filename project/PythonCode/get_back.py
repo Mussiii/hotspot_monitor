@@ -1014,7 +1014,7 @@ def get_titles():
     cursor = conn.cursor()
 
     # 查询所有标题，url和标签
-    cursor.execute("SELECT  title, ROWID, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
+    cursor.execute("SELECT  title, url, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
     time1 = cursor.fetchall()
 
     # 关闭数据库连接
@@ -1047,7 +1047,7 @@ def get_titles_po():
     cursor = conn.cursor()
 
     # 查询所有标题，url和标签
-    cursor.execute("SELECT title, ROWID, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
+    cursor.execute("SELECT title, url, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
     time1 = cursor.fetchall()
 
     # 关闭数据库连接
@@ -1080,7 +1080,7 @@ def get_titles_ne():
     cursor = conn.cursor()
 
     # 查询所有标题，url和标签
-    cursor.execute("SELECT title, ROWID, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
+    cursor.execute("SELECT title, url, Predicted_Label, hot,  keyword1, keyword2, keyword3, source, times FROM data_append")
     time1 = cursor.fetchall()
 
     # 关闭数据库连接
@@ -1480,7 +1480,7 @@ def query_database(query):
     cursor = conn.cursor()
 
     # 执行 SQL 查询以查找包含输入查询的标题
-    cursor.execute("SELECT title, ROWID, source, times, Predicted_Label  FROM data_append WHERE title LIKE ?", ('%' + query + '%',))
+    cursor.execute("SELECT title, url, source, times, Predicted_Label  FROM data_append WHERE title LIKE ?", ('%' + query + '%',))
     
     # 获取所有匹配的结果
     results = cursor.fetchall()
@@ -1490,7 +1490,7 @@ def query_database(query):
     conn.close()
     
     # 返回标题列表
-    return [{'title': result[0], 'rowId': result[1], 'source': result[2], 'times': result[3], 'Predicted_Label': result[4]} for result in results]
+    return [{'title': result[0], 'url': result[1], 'source': result[2], 'times': result[3], 'Predicted_Label': result[4]} for result in results]
 
 @app.route('/search/', methods=['GET'])
 def search():

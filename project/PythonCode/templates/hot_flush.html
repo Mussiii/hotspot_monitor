@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #hot_imm{
+    list-style: none; /* 隐藏默认列表标记 */
+    /* padding: 0;  */
+    /* 移除默认的内边距 */
+    /* margin: 0;  */
+    /* 移除默认的外边距 */
+    display: flex;
+    flex-direction: column;
+    float:left;
+    font-size: 20px;
+    font-weight:300;
+    font-family:inherit ;
+    
+    }
+
+    .row-container {
+    display: flex;
+    /* justify-content: space-between; */
+    /* display: block; */
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+    }
+
+    .redirect_link{
+    text-decoration: none;
+    color: rgb(61, 71, 88);
+    z-index: 2;
+    }
+
+
+    .redirect_link:hover{
+        color: rgb(61, 71, 88);
+    }
+
+    .eventTag{
+        font-size: 16px;
+        margin-left: 70%;
+        padding: 1%;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-color: rgb(243, 243, 243);
+        font-weight: 400;
+        z-index: 2;
+    }
+
+    .tag-negative{
+        color: rgb(174, 49, 49);
+    }
+
+    .tag-positive{
+        color:rgb(116, 193, 147);
+    }
+
+    .tag-neutral{
+        color: rgb(212, 185, 66);
+    }
+
+    .element{
+        margin-bottom: 4%;
+        border-bottom: 1px solid rgb(206, 210, 214);
+        position: relative;
+    }
+
+    .element::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ededed;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 0.3s;
+    }
+
+    .element:hover::before {
+        opacity: 1;
+    }
+
+    .rank1{
+        z-index: 2;
+        padding: 1%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-right: 2%;
+        background-color: rgb(187, 33, 33);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: 400;
+    }
+
+    .rank2{
+        z-index: 2;
+        padding: 1%;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-color: rgb(209, 146, 45);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: 400;
+        margin-right: 2%;
+    }
+
+    .rank3{
+        z-index: 2;
+        padding: 1%;
+        padding-left: 2%;
+        padding-right: 2%;
+        background-color: rgb(202, 179, 51);
+        color: rgb(255, 255, 255);
+        font-size: 18px;
+        font-weight: 400;
+        margin-right: 2%;
+    }
+
+    .rank4{
+        z-index: 2;
+        padding: 1%;
+        padding-left: 2%;
+        padding-right: 2%;
+        color: rgb(78, 121, 113);
+        font-size: 20px;
+        font-weight: 400;
+        margin-right: 1%;
+    }
+
+    .rank5{
+        z-index: 2;
+        padding: .8%;
+        padding-left: 2%;
+        padding-right: 2%;
+        color: rgb(71, 87, 123);
+        font-size: 20px;
+        font-weight: 400;
+        margin-right: 1%;
+    }
+
+    .hot-text-container {
+            overflow: hidden;
+            height: 50px;
+            position: relative;
+    }
+
+    .hot-text-slider {
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease-in-out;
+    }
+
+    .hot-text-slide {
+            height: 50px;
+            line-height: 50px;
+            font-size: 20px;
+    }
+    </style>
+</head>
+<body>
+    <ul id="hot_imm">
+        {% for row in top_elements %}
+            <li class="element">
+                <div class="row-container" style="margin-left: 4%;">
+                    {% if row[3] == 1 %}
+                        <span class="rank1">1</span>
+                    {% elif row[3] == 2 %}
+                        <span class="rank2">2</span>
+                    {% elif row[3] == 3 %}
+                        <span class="rank3">3</span> 
+                    {% elif row[3] == 4 %}
+                        <span class="rank4">4</span>
+                    {% elif row[3] == 5 %}
+                        <span class="rank5">5</span>
+                    {% endif %}
+                    <a class="redirect_link" href="{{ row[1] }}" target="_blank">{{ row[0] }}</a>
+                </div>
+                <div class="row-container">
+                    {% if row[2] == 0 %}
+                        <span class="tag-negative eventTag" data-type="3">负面</span>
+                    {% elif row[2] == 1 %}
+                        <span class="tag-neutral eventTag" data-type="2">中性</span>
+                    {% elif row[2] == 2 %}
+                        <span class="tag-positive eventTag" data-type="1">正面</span>
+                    {% endif %}
+                </div>
+            </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
